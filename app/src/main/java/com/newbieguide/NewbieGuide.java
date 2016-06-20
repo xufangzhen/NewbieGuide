@@ -87,8 +87,7 @@ public class NewbieGuide {
         TextView knowTv = new TextView(mActivity);
         knowTv.setTextColor(0xffffffff);
         knowTv.setTextSize(15);
-        knowTv.setPadding(ScreenUtils.dpToPx(mActivity, 15), ScreenUtils
-                .dpToPx(mActivity, 5), ScreenUtils.dpToPx(mActivity, 15),
+        knowTv.setPadding(ScreenUtils.dpToPx(mActivity, 15), ScreenUtils.dpToPx(mActivity, 5), ScreenUtils.dpToPx(mActivity, 15),
                 ScreenUtils.dpToPx(mActivity, 5));
         knowTv.setBackgroundResource(R.drawable.solid_white_bg);
         knowTv.setText(text);
@@ -106,9 +105,8 @@ public class NewbieGuide {
         LinearLayout container = new LinearLayout(mActivity);
         container.setOrientation(LinearLayout.VERTICAL);
         container.setGravity(Gravity.CENTER_HORIZONTAL);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams
-                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams
-                        .WRAP_CONTENT);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams
+                .WRAP_CONTENT);
         container.addView(generateMsgTv(msg), lp);
         lp.topMargin = ScreenUtils.dpToPx(mActivity, 10);
         container.addView(generateKnowTv("我知道啦"), lp);
@@ -117,22 +115,21 @@ public class NewbieGuide {
 
     //生成布局参数
     private RelativeLayout.LayoutParams getLp(int offsetX, int offsetY) {
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams
-                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams
-                        .WRAP_CONTENT);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams
+                .WRAP_CONTENT);
         //水平方向
-        if (offsetX == CENTER) {
+        if(offsetX == CENTER) {
             lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-        } else if (offsetX < 0) {
+        } else if(offsetX < 0) {
             lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
             lp.rightMargin = -offsetX;
         } else {
             lp.leftMargin = offsetX;
         }
         //垂直方向
-        if (offsetY == CENTER) {
+        if(offsetY == CENTER) {
             lp.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
-        } else if (offsetY < 0) {
+        } else if(offsetY < 0) {
             lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
             lp.bottomMargin = -offsetY;
         } else {
@@ -146,13 +143,12 @@ public class NewbieGuide {
         int paddingTop = ScreenUtils.getStatusBarHeight(mActivity);
         mGuideView.setPadding(0, paddingTop, 0, 0);
         mGuideView.setDate(mHoleList);
-        mParentView.addView(mGuideView, new FrameLayout.LayoutParams
-                (ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams
-                        .MATCH_PARENT));
+        mParentView.addView(mGuideView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams
+                .MATCH_PARENT));
 
-        if (mOnGuideChangedListener != null) mOnGuideChangedListener.onShowed();
+        if(mOnGuideChangedListener != null) mOnGuideChangedListener.onShowed();
 
-        if (mEveryWhereTouchable) {
+        if(mEveryWhereTouchable) {
             mGuideView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -164,10 +160,10 @@ public class NewbieGuide {
     }
 
     public void remove() {
-        if (mGuideView != null && mGuideView.getParent() != null) {
+        if(mGuideView != null && mGuideView.getParent() != null) {
             mGuideView.recycler();
             ((ViewGroup) mGuideView.getParent()).removeView(mGuideView);
-            if (mOnGuideChangedListener != null) {
+            if(mOnGuideChangedListener != null) {
                 mOnGuideChangedListener.onRemoved();
             }
         }
@@ -178,8 +174,7 @@ public class NewbieGuide {
         return this;
     }
 
-    public void setOnGuideShowedListener(OnGuideChangedListener
-                                                 onGuideChangedListener) {
+    public void setOnGuideChangedListener(OnGuideChangedListener onGuideChangedListener) {
         this.mOnGuideChangedListener = onGuideChangedListener;
     }
 

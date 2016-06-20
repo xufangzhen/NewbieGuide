@@ -14,8 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends Activity implements AbsListView
-        .OnScrollListener {
+public class MainActivity extends Activity implements AbsListView.OnScrollListener {
 
     private ImageView mCollect;
     private TextView mTitleTv;
@@ -52,11 +51,9 @@ public class MainActivity extends Activity implements AbsListView
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (NewbieGuideManager.isNeverShowed(this, NewbieGuideManager
-                .TYPE_COLLECT)) {
-            new NewbieGuideManager(this, NewbieGuideManager.TYPE_COLLECT)
-                    .addView(mCollect, HoleBean.TYPE_CIRCLE).addView
-                    (mTitleTv, HoleBean.TYPE_RECTANGLE).show();
+        if(NewbieGuideManager.isNeverShowed(this, NewbieGuideManager.TYPE_COLLECT)) {
+            new NewbieGuideManager(this, NewbieGuideManager.TYPE_COLLECT).addView(mCollect, HoleBean.TYPE_CIRCLE).addView(mTitleTv,
+                    HoleBean.TYPE_RECTANGLE).show();
         }
     }
 
@@ -64,10 +61,8 @@ public class MainActivity extends Activity implements AbsListView
     public void onScrollStateChanged(AbsListView view, int scrollState) {}
 
     @Override
-    public void onScroll(final AbsListView view, int firstVisibleItem, int
-            visibleItemCount, int totalItemCount) {
-        if (firstVisibleItem >= 6 && NewbieGuideManager.isNeverShowed(this,
-                NewbieGuideManager.TYPE_LIST) && !isShow) {
+    public void onScroll(final AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        if(firstVisibleItem >= 6 && NewbieGuideManager.isNeverShowed(this, NewbieGuideManager.TYPE_LIST) && !isShow) {
             isShow = true;
             mListView.smoothScrollToPosition(6);
             mListView.postDelayed(new Runnable() {
@@ -77,11 +72,8 @@ public class MainActivity extends Activity implements AbsListView
                     mListView.post(new Runnable() {
                         @Override
                         public void run() {
-                            new NewbieGuideManager(MainActivity.this,
-                                    NewbieGuideManager.TYPE_LIST).addView
-                                    (view.getChildAt(0).findViewById(R.id
-                                            .logo), HoleBean.TYPE_RECTANGLE)
-                                    .show();
+                            new NewbieGuideManager(MainActivity.this, NewbieGuideManager.TYPE_LIST).addView(view.getChildAt(0)
+                                    .findViewById(R.id.logo), HoleBean.TYPE_RECTANGLE).show();
                         }
                     });
                 }
@@ -114,10 +106,9 @@ public class MainActivity extends Activity implements AbsListView
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewHolder holder;
-            if (convertView == null) {
+            if(convertView == null) {
                 holder = new ViewHolder();
-                convertView = View.inflate(MainActivity.this, R.layout.item,
-                        null);
+                convertView = View.inflate(MainActivity.this, R.layout.item, null);
                 holder.logo = (ImageView) convertView.findViewById(R.id.logo);
                 holder.item = (TextView) convertView.findViewById(R.id.details);
                 convertView.setTag(holder);
@@ -138,11 +129,9 @@ public class MainActivity extends Activity implements AbsListView
     protected void onDestroy() {
         super.onDestroy();
         //todo 下面代码需要删掉
-        SharedPreferences.Editor editor = getSharedPreferences
-                ("newbie_guide", MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = getSharedPreferences("newbie_guide", MODE_PRIVATE).edit();
         editor.putBoolean("newbie_guide" + NewbieGuideManager.TYPE_LIST, true);
-        editor.putBoolean("newbie_guide" + NewbieGuideManager.TYPE_COLLECT,
-                true);
+        editor.putBoolean("newbie_guide" + NewbieGuideManager.TYPE_COLLECT, true);
         editor.apply();
     }
 }

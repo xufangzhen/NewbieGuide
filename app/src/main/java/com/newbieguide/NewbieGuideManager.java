@@ -60,7 +60,7 @@ public class NewbieGuideManager {
     }
 
     public void showWithListener(int delayTime, NewbieGuide.OnGuideChangedListener onGuideChangedListener) {
-        mNewbieGuide.setOnGuideShowedListener(onGuideChangedListener);
+        mNewbieGuide.setOnGuideChangedListener(onGuideChangedListener);
         show(delayTime);
     }
 

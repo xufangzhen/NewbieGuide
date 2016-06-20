@@ -55,7 +55,7 @@ public class GuideView extends RelativeLayout {
 
     public void setDate(List<HoleBean> holeList) {
         mHoleList = holeList;
-        if (mHoleList != null && mHoleList.size() > 0) {
+        if(mHoleList != null && mHoleList.size() > 0) {
             mBitmapRect = mHoleList.get(0).getRectF();
             for (HoleBean hole : mHoleList) {
                 mBitmapRect.left = Math.min(mBitmapRect.left, hole.getRectF().left);
@@ -66,8 +66,9 @@ public class GuideView extends RelativeLayout {
         }
         mStrokeWidth = Math.max(Math.max(mBitmapRect.left, mBitmapRect.top), Math.max(ScreenUtils.getScreenWidth(getContext()) -
                 mBitmapRect.left -
-                mBitmapRect.width(), ScreenUtils.getScreenHeight(getContext()) - mBitmapRect.top - mBitmapRect.height())) + 1;
-        if (mBitmapRect.width() > 0 && mBitmapRect.height() > 0) {
+                mBitmapRect.width(), ScreenUtils.getScreenHeight(getContext()) -
+                mBitmapRect.top - mBitmapRect.height())) + 1;
+        if(mBitmapRect.width() > 0 && mBitmapRect.height() > 0) {
             mBitmap = Bitmap.createBitmap((int) mBitmapRect.width(), (int) mBitmapRect.height(), Bitmap.Config.ARGB_8888);
         } else {
             mBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
@@ -80,7 +81,7 @@ public class GuideView extends RelativeLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (mHoleList != null && mHoleList.size() > 0) {
+        if(mHoleList != null && mHoleList.size() > 0) {
             mPaint.setXfermode(pdf);
             mPaint.setMaskFilter(bmf);
             mPaint.setStyle(Paint.Style.FILL);
@@ -99,7 +100,7 @@ public class GuideView extends RelativeLayout {
                 }
             }
             canvas.drawBitmap(mBitmap, mBitmapRect.left, mBitmapRect.top, null);
-
+            //绘制剩余空间的矩形
             mPaint.setXfermode(null);
             mPaint.setMaskFilter(null);
             mPaint.setStyle(Paint.Style.STROKE);
@@ -126,7 +127,7 @@ public class GuideView extends RelativeLayout {
     }
 
     public void recycler() {
-        if (mBitmap != null) {
+        if(mBitmap != null) {
             mBitmap.recycle();
             mBitmap = null;
         }

@@ -15,7 +15,7 @@ public class ScreenUtils {
     }
 
     public static float dpToPx(Context context, float dp) {
-        if (context == null) {
+        if(context == null) {
             return -1;
         }
         return dp * context.getResources().getDisplayMetrics().density;
@@ -49,7 +49,7 @@ public class ScreenUtils {
         Rect frame = new Rect();
         context.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
-        if (0 == statusBarHeight) {
+        if(0 == statusBarHeight) {
             statusBarHeight = getStatusBarHeightByReflection(context);
         }
         return statusBarHeight;

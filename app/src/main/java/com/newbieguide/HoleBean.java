@@ -23,7 +23,7 @@ public class HoleBean {
 
     public int getCenterX() {
         int centerX = 0;
-        if (mHole != null) {
+        if(mHole != null) {
             mHole.getLocationOnScreen(mLocation);
             centerX = mLocation[0] + mHole.getWidth() / 2;
         }
@@ -32,7 +32,7 @@ public class HoleBean {
 
     public int getCenterY() {
         int centerY = 0;
-        if (mHole != null) {
+        if(mHole != null) {
             mHole.getLocationOnScreen(mLocation);
             centerY = mLocation[1] + mHole.getHeight() / 2;
         }
@@ -45,7 +45,7 @@ public class HoleBean {
 
     public RectF getRectF() {
         RectF rectF = new RectF();
-        if (mHole != null) {
+        if(mHole != null) {
             mHole.getLocationOnScreen(mLocation);
             rectF.left = mLocation[0];
             rectF.top = mLocation[1];
